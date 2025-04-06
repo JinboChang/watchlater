@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Watch Later",
+  "version": "1.0",
+  "description": "Save YouTube videos to watch later in a separate tab.",
+  "permissions": ["storage", "activeTab", "scripting", "tabs"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "saved_videos.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options.html",
+  "host_permissions": ["https://www.youtube.com/*"],
+  "web_accessible_resources": [{
+    "resources": ["video_list.html"],
+    "matches": ["<all_urls>"]
+  }]
+}
